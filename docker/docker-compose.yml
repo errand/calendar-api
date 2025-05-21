@@ -1,0 +1,50 @@
+services:
+  php:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: calendar_api_php
+    volumes:
+      - ../app:/var/www/html/app
+      - ../public:/var/www/html/public
+    depends_on:
+      db:
+        condition: service_healthy
+    networks:
+      - calendar-network
+
+  nginx:
+    image: nginx:latest
+    container_name: calendar_api_nginx
+    ports:
+      - "8080:80"
+    volumes:
+      - ../app:/var/www/html/app
+      - ../public:/var/www/html/public
+      - ./nginx/default.conf:/etc/nginx/conf.d/default.conf
+    depends_on:
+      - php
+    networks:
+      - calendar-network
+
+  db:
+    image: mariadb:10.11
+    container_name: calendar_api_db
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: calendar_db
+      MYSQL_USER: user
+      MYSQL_PASSWORD: password
+    command: --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    volumes:
+      - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+      - db_data:/var/lib/mysql
+    networks:
+      - calendar-network
+
+networks:
+  calendar-network:
+    driver: bridge
+
+volumes:
+  db_data:
