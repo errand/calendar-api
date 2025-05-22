@@ -1,5 +1,6 @@
 {
   "name": "errand/calendarapi",
+  "version": "1.0.0",
   "description": "RESTful API for production calendar",
   "autoload": {
     "psr-4": {
