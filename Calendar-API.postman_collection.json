@@ -1,0 +1,183 @@
+{
+	"info": {
+		"_postman_id": "421c6a11-fe8f-42cb-8a3e-696ffebf1f75",
+		"name": "Calendar-API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "5590005",
+		"_collection_link": "https://dark-trinity-767571.postman.co/workspace/Team-Workspace~c0d2dcd5-5869-491e-8818-b63070a7f81c/collection/5590005-421c6a11-fe8f-42cb-8a3e-696ffebf1f75?action=share&source=collection_link&creator=5590005"
+	},
+	"item": [
+		{
+			"name": "Get Calendar by Year",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/calendar/2024",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calendar",
+						"2024"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "add date",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"фывафыва\",\n    \"dayType\": 9,\n    \"comment\": \"Новый год\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/calendar",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calendar"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Date by Id",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"2025-12-31\",\n    \"dayType\": 9,\n    \"comment\": \"Обновленный Новый год\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/calendar/51",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calendar",
+						"51"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Date by Id",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"2025-12-31\",\n    \"dayType\": 9,\n    \"comment\": \"Обновленный Новый год\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/calendar/id/26",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calendar",
+						"id",
+						"26"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Date by Date",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"date\": \"2025-12-31\",\n    \"dayType\": 9,\n    \"comment\": \"Обновленный Новый год\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/calendar/date/2024-12-31",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calendar",
+						"date",
+						"2024-12-31"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Date by Id",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8080/calendar/41",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"calendar",
+						"41"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
