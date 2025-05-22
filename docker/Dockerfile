@@ -1,19 +1,19 @@
 FROM php:8.4-fpm
 
-RUN docker-php-ext-install pdo pdo_mysql mysqli \
-    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+RUN apt-get update && apt-get install -y \
+    git \
+    unzip \
+    libzip-dev \
+    && docker-php-ext-install pdo pdo_mysql mysqli zip \
+    && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /var/www/html
 
 COPY composer.json .
-RUN composer install
+RUN composer install --no-interaction --prefer-dist
 
-COPY app/ ./app/
-COPY public/ ./public/
-
-COPY docker/php/php.ini /usr/local/etc/php/
-
-RUN chown -R www-data:www-data /var/www/html
+COPY . .
 
 EXPOSE 9000
 
