@@ -51,8 +51,7 @@ class CalendarRepository implements CalendarRepositoryInterface {
         $row = $result->fetch_assoc();
         $stmt->close();
         if ($row) {
-            $comment = $row['comment'] !== null ? mb_convert_encoding($row['comment'], 'UTF-8', 'UTF-8') : null;
-            return new CalendarDay($row['id'], $row['date'], $row['day'], $comment);
+            return new CalendarDay($row['id'], $row['date'], $row['day'], $row['comment']);
         }
         return null;
     }
