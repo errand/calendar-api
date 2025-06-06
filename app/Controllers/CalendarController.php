@@ -104,7 +104,7 @@ class CalendarController
         }
         $id = $this->service->addSpecialDay(
             $data['date'],
-            $data['dayType'],
+            (int) $data['dayType'],
             $data['comment'] ?? null
         );
         $this->sendResponse(201, ['id' => $id]);

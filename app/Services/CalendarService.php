@@ -26,12 +26,15 @@ class CalendarService {
         return $this->repository->getByDate($date);
     }
 
-    public function addSpecialDay(string $date, int $dayType, ?string $comment): int {
+    public function addSpecialDay(string $date, int $dayType, ?string $comment): mixed {
         if (!$this->validateDayType($dayType)) {
             throw new \InvalidArgumentException("Invalid day type");
         }
         if (!$this->validateDate($date)) {
             throw new \InvalidArgumentException("Invalid date format");
+        }
+        if ($this->getByDate($date)?->id) {
+            throw new \InvalidArgumentException("Already added");
         }
         return $this->repository->add($date, $dayType, $comment);
     }
